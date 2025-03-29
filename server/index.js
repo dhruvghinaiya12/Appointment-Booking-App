@@ -4,6 +4,7 @@ const session = require("express-session");
 const passport = require("./config/Passport")
 const db = require('./config/db');
 const router = require('./routes');
+const verifyRole = require('./middleware/Auth');
 
 require("dotenv").config();
 
@@ -24,7 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use("/api", router);
+app.use("/api",verifyRole, router);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

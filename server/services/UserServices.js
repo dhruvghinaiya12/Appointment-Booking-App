@@ -13,7 +13,7 @@ const userService = {
       const newUser = await userRepository.createUser(userData);
       const token = await Token({
         userID: newUser.id,
-        roleName: newUser.roleName,
+        role: newUser.role,
       });
 
       return { user: newUser, token };
@@ -34,7 +34,9 @@ const userService = {
         throw new Error("Invalid password");
       }
 
-      const token = await Token({ userID: user.id, roleName: user.roleName });
+      const token = await Token({ userID: user.id, role: user.role });
+      console.log(token);
+      
 
       return { user, token };
     } catch (error) {

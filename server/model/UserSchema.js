@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["Admin", "Employee", "Client"],
+      default:"Client",
       required: true,
     },
     googleId: { type: String, unique: true }, 

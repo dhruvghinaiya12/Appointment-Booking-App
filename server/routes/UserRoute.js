@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const userController = require("../controller/UserController");
 const passport = require("passport");
+const roleAuth = require("../middleware/RoleAuth");
 
 const UserRoutes = Router();
 
@@ -41,7 +42,7 @@ UserRoutes.get("/logout", async (req, res) => {
 // User Management Routes
 UserRoutes.patch("/:id", userController.updateUser);
 UserRoutes.delete("/:id", userController.deleteUser);
-UserRoutes.get("/Alluser", userController.getAllUsers);
+UserRoutes.get("/Alluser",roleAuth(["Admin"]), userController.getAllUsers);
 UserRoutes.get("/info/:id", userController.getUserById);
 UserRoutes.get("/", userController.getUsersByQuery);
 
