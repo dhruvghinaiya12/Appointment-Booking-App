@@ -6,7 +6,6 @@ export const Signup = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const res = await ApiLink.post("/users/signup", userData);
-      console.log("Response Data:", res.data);
       return res.data;
     } catch (error) {
       console.error("Signup Error:", error.response?.data.error);
@@ -15,12 +14,11 @@ export const Signup = createAsyncThunk(
   }
 );
 
-export const Login = createAsyncThunk(
+export const UserLogin = createAsyncThunk(
   "auth/login",
   async (userData, { rejectWithValue }) => {
     try {
       const res = await ApiLink.post("/users/login", userData);
-      console.log("Response Data:", res.data);
       return res.data;
     } catch (error) {
       console.error("Login Error:", error.response?.data.error);
